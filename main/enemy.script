@@ -1,0 +1,17 @@
+function init(self)
+	go.animate('.', 'position.y', go.PLAYBACK_ONCE_FORWARD, -768, go.EASING_LINEAR, math.random(1, 400), 0, function()
+		go.delete()
+	end)
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash('trigger_response') and message.enter then
+		sound.play('#boom')
+
+		msg.post('interface', 'Hello')
+
+		sprite.play_flipbook('#sprite', 'enemy_death', function()
+			go.delete()
+		end)
+	end
+end

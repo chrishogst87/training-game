@@ -1,0 +1,21 @@
+local function spawn_enemy()
+	local pos_x = math.random(1, 768)
+	local pos_y = math.random(400, 768)
+	return vmath.vector3(pos_x, pos_y, 0)
+end
+
+function init(self)
+	--- init some enemies
+	math.randomseed(socket.gettime())
+	
+	for i = 1, 20 do
+		local position = spawn_enemy()
+		factory.create('#enemy_factory',position)
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	-- Add message-handling code here
+	-- Learn more: https://defold.com/manuals/message-passing/
+	-- Remove this function if not needed
+end
